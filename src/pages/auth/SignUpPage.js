@@ -16,7 +16,7 @@ export default function SignUpPage() {
         email,
         password,
       });
-      login(response.data); // Assuming response.data contains user data
+      login(response.data);
       navigate("/login");
     } catch (error) {
       console.error(error);

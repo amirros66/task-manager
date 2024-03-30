@@ -16,7 +16,8 @@ export default function LoginPage() {
         email,
         password,
       });
-      login(response.data); // Assuming response.data contains user data
+      login(response.data);
+      console.log(response.data);
       navigate("/profile");
     } catch (error) {
       console.error(error);

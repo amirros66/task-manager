@@ -1,18 +1,25 @@
 import React, { createContext, useContext, useState } from "react";
+import { API } from "../lib/API";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      return JSON.parse(savedUser);
+    }
+    return null;
+  });
 
-  const login = (userData) => {
+  const login = async (userData) => {
     setUser(userData);
-    // Optionally set token in localStorage here
+    localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
-    // Remove token from localStorage here
+    localStorage.removeItem("user"); // Remove user data from localStorage
   };
 
   return (
