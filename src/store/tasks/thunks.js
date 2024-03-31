@@ -4,6 +4,8 @@ import {
   tasksFetchError,
   tasksFetched,
   profileFetched,
+  addTaskSuccess,
+  addTaskFailure,
 } from "./slice";
 
 const API_URL = "http://127.0.0.1:8000";
@@ -34,4 +36,19 @@ const fetchUserTasks = (token) => async (dispatch) => {
   }
 };
 
-export { fetchUserTasks, fetchUserProfile };
+const addTask =
+  ({ title }, token) =>
+  async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/tasks`,
+        { title },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      dispatch(addTaskSuccess(response.data));
+    } catch (error) {
+      dispatch(addTaskFailure(error.toString()));
+    }
+  };
+
+export { fetchUserTasks, fetchUserProfile, addTask };

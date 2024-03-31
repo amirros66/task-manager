@@ -30,9 +30,22 @@ export const taskSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    addTaskSuccess: (state, action) => {
+      state.tasks.push(action.payload);
+    },
+    addTaskFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export const { startLoading, tasksFetched, tasksFetchError, profileFetched } =
-  taskSlice.actions;
+export const {
+  startLoading,
+  tasksFetched,
+  tasksFetchError,
+  profileFetched,
+  addTaskSuccess,
+  addTaskFailure,
+} = taskSlice.actions;
 export default taskSlice.reducer;

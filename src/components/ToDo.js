@@ -8,6 +8,7 @@ import {
 } from "../store/tasks/selectors";
 import { useAuth } from "../hooks/useAuth";
 import "../styling/toDo.css";
+import AddTask from "./AddTask";
 
 export default function ToDo() {
   const dispatch = useDispatch();
@@ -29,8 +30,10 @@ export default function ToDo() {
     <div className="to-do-box">
       <div className="add-task">
         <h2>To Do</h2>
-        <button>+</button>
+
+        <AddTask />
       </div>
+      <br />
       <div className="task-list">
         {tasks.map((task) => (
           <div key={task.id}>{task.title}</div>
