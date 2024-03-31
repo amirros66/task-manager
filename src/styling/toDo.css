@@ -8,7 +8,7 @@
   margin-left: 40px;
 }
 
-.add-task {
+.task-list {
   display: flex;
   flex-direction: column;
   justify-content: center;

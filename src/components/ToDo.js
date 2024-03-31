@@ -28,15 +28,14 @@ export default function ToDo() {
 
   return (
     <div className="to-do-box">
-      <div className="add-task">
-        <h2>To Do</h2>
-
-        <AddTask />
-      </div>
-      <br />
       <div className="task-list">
+        <h2>To Do</h2>
+        <AddTask />
+        <br />
         {tasks.map((task) => (
-          <div key={task.id}>{task.title}</div>
+          <div key={task.id}>
+            <p>- {task.title}</p>
+          </div>
         ))}
       </div>
     </div>

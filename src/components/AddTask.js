@@ -11,9 +11,8 @@ export default function AddTask() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title && token) {
-      // Dispatch the addTask thunk with the task title and token
       dispatch(addTask({ title }, token));
-      setTitle(""); // Reset the title for next input
+      setTitle("");
     }
   };
 
@@ -25,7 +24,8 @@ export default function AddTask() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
-      />
+      />{" "}
+      {""}
       <button type="submit">+</button>
     </form>
   );
