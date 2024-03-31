@@ -1,11 +1,30 @@
 import axios from "axios";
-import { startLoading, tasksFetchError, tasksFetched } from "./slice";
+import {
+  startLoading,
+  tasksFetchError,
+  tasksFetched,
+  profileFetched,
+} from "./slice";
 
 const API_URL = "http://127.0.0.1:8000";
+
+const fetchUserProfile = (token) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    console.log(`Bearer ${token}`);
+    const response = await axios.get(`${API_URL}/users/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    dispatch(profileFetched(response.data));
+  } catch (error) {
+    dispatch(tasksFetchError(error.toString()));
+  }
+};
 
 const fetchUserTasks = (token) => async (dispatch) => {
   try {
     dispatch(startLoading());
+    console.log(`Bearer ${token}`);
     const response = await axios.get(`${API_URL}/tasks/my-tasks`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -15,4 +34,4 @@ const fetchUserTasks = (token) => async (dispatch) => {
   }
 };
 
-export { fetchUserTasks };
+export { fetchUserTasks, fetchUserProfile };

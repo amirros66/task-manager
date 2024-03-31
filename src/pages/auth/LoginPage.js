@@ -16,9 +16,13 @@ export default function LoginPage() {
         email,
         password,
       });
-      login(response.data);
-      console.log(response.data);
-      navigate("/profile");
+      if (response.data && response.data.access_token) {
+        login(response.data.access_token);
+        console.log(response.data);
+        navigate("/profile");
+      } else {
+        console.error("No access token received");
+      }
     } catch (error) {
       console.error(error);
     }
