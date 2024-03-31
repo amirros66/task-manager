@@ -6,7 +6,7 @@ import { fetchUserProfile } from "../store/tasks/thunks";
 import { selectLoading, selectProfile } from "../store/tasks/selectors";
 
 export default function ProfilePage() {
-  const { logout, token } = useAuth();
+  const { user, logout, token } = useAuth();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -20,6 +20,10 @@ export default function ProfilePage() {
   }, [dispatch, token]);
 
   if (loading) return <div>Loading...</div>;
+
+  if (!user) {
+    return <p>Please log in.</p>;
+  }
 
   const handleSeeTasks = () => {
     navigate("/tasks");

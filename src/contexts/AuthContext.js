@@ -7,9 +7,14 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem("authToken"));
 
   const login = async (authToken) => {
+    const userData = {
+      access_token: authToken,
+    }; // ? change this data
     console.log("Logging in with token:", authToken);
     setToken(authToken);
+    setUser(userData);
     localStorage.setItem("authToken", authToken);
+    localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const logout = () => {
