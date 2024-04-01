@@ -8,6 +8,15 @@
   margin-left: 40px;
 }
 
+.task-box {
+  border: solid black 1px;
+  border-radius: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-bottom: 10px;
+  width: 60%;
+}
+
 .task-list {
   display: flex;
   flex-direction: column;
